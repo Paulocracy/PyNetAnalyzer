@@ -1,5 +1,5 @@
 name: CNApy
-version: 0.0.2
+version: 0.0.3
 
 ignore_duplicate_files: True
 
@@ -11,7 +11,7 @@ channels:
 
 specs:
   - cnapy
-  - menuinst
+  - menuinst                             [win]
 
 license_file: LICENSE
 
