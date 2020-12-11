@@ -36,25 +36,25 @@ jobs:
       shell: pwsh
       run: conda install conda-build conda-verify anaconda-client constructor
 
-    - name: Windows build
-      if: matrix.os == 'windows-latest'
-      shell: pwsh
-      run: conda-build ./recipe-windows -c conda-forge -c bioconda --output-folder build
+    # - name: Windows build
+    #   if: matrix.os == 'windows-latest'
+    #   shell: pwsh
+    #   run: conda-build ./recipe-windows -c conda-forge -c bioconda --output-folder build
 
     - name: Linux build
       if: matrix.os == 'ubuntu-latest'
       shell: pwsh
       run: conda-build ./recipe-linux -c conda-forge -c bioconda --output-folder build
 
-    - name: Upload to Anaconda (Windows)
-      if: matrix.os == 'windows-latest'
-      env:
-        ANACONDA_LOGIN: ${{ secrets.ANACONDA_LOGIN }}
-      shell: powershell
-      run: |
-        anaconda login --username arb-lab --password "$env:ANACONDA_LOGIN"
-        anaconda -v upload -l dev build/win-64/*.tar.bz2
-        anaconda logout
+    # - name: Upload to Anaconda (Windows)
+    #   if: matrix.os == 'windows-latest'
+    #   env:
+    #     ANACONDA_LOGIN: ${{ secrets.ANACONDA_LOGIN }}
+    #   shell: powershell
+    #   run: |
+    #     anaconda login --username arb-lab --password "$env:ANACONDA_LOGIN"
+    #     anaconda -v upload -l dev build/win-64/*.tar.bz2
+    #     anaconda logout
 
     - name: Upload to Anaconda (Ubuntu)
       if: matrix.os == 'ubuntu-latest'
@@ -78,10 +78,10 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   
-    - name: GH Release Windows
-      if: matrix.os == 'windows-latest'
-      uses: softprops/action-gh-release@v0.1.5
-      with:
-        files: CNApy-${{ github.event.release.tag_name }}-Windows-x86_64.exe
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}   
+    # - name: GH Release Windows
+    #   if: matrix.os == 'windows-latest'
+    #   uses: softprops/action-gh-release@v0.1.5
+    #   with:
+    #     files: CNApy-${{ github.event.release.tag_name }}-Windows-x86_64.exe
+    #   env:
+    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}   
