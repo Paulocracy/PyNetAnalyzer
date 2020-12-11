@@ -62,9 +62,7 @@ jobs:
         ANACONDA_LOGIN: ${{ secrets.ANACONDA_LOGIN }}
       shell: bash -l {0}
       run: |
-        anaconda login --username arb-lab --password "$ANACONDA_LOGIN"
-        anaconda -v upload -l dev build/linux-64/*.tar.bz2
-        anaconda logout
+        anaconda -v -t $ANACONDA_LOGIN upload -l dev build/linux-64/*.tar.bz2
 
     - name: Installscript
       run: constructor ./construct
