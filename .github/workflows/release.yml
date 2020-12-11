@@ -29,7 +29,7 @@ jobs:
       with:
         auto-update-conda: true
         python-version: '3.7'
-        activate-environment: build-deploy
+        # activate-environment: build-deploy
         channels: conda-forge, bioconda
 
     - name: install prerequisites
@@ -38,10 +38,12 @@ jobs:
 
     - name: Windows build
       if: matrix.os == 'windows-latest'
+      shell: pwsh
       run: conda-build ./recipe-windows -c conda-forge -c bioconda --output-folder build
 
     - name: Linux build
       if: matrix.os == 'ubuntu-latest'
+      shell: pwsh
       run: conda-build ./recipe-linux -c conda-forge -c bioconda --output-folder build
 
     - name: Upload to Anaconda (Windows)
