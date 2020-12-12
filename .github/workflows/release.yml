@@ -65,6 +65,7 @@ jobs:
         anaconda -v -t $ANACONDA_LOGIN upload -l dev build/linux-64/*.tar.bz2
 
     - name: Installscript
+      shell: pwsh
       run: constructor ./construct
   
     - name: GH Release linux
