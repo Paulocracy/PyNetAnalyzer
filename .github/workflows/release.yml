@@ -49,8 +49,9 @@ jobs:
     - name: Upload to Anaconda (Windows)
       if: matrix.os == 'windows-latest'
       env:
-        ANACONDA_LOGIN: ${{ secrets.ANACONDA_LOGIN }}
-      run: anaconda -v -t "$ANACONDA_LOGIN" upload -l dev build/win-64/*.tar.bz2
+        ANACONDA_API_TOKEN: ${{ secrets.ANACONDA_LOGIN }}
+      run: |
+        anaconda -v --show-traceback upload -u arb-lab -l dev build\win-64\*.tar.bz2
 
     - name: Upload to Anaconda (Ubuntu)
       if: matrix.os == 'ubuntu-latest'
