@@ -50,8 +50,7 @@ jobs:
       if: matrix.os == 'windows-latest'
       env:
         ANACONDA_LOGIN: ${{ secrets.ANACONDA_LOGIN }}
-      shell: pwsh
-      run: anaconda -v -t "$env:ANACONDA_LOGIN" upload -l dev build/win-64/*.tar.bz2
+      run: anaconda -v -t "$ANACONDA_LOGIN" upload -l dev build/win-64/*.tar.bz2
 
     - name: Upload to Anaconda (Ubuntu)
       if: matrix.os == 'ubuntu-latest'
